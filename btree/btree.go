@@ -7,6 +7,10 @@ import (
 	"github.com/google/btree"
 )
 
+const (
+	defaultBTreeDegree = 64
+)
+
 type treeItem struct {
 	key   []byte
 	value []byte

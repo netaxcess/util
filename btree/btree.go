@@ -73,7 +73,7 @@ func (kv *KVTree) RangeDelete(start, end []byte) {
 	item := &treeItem{key: start}
 	kv.tree.AscendGreaterOrEqual(item, func(i btree.Item) bool {
 		target := i.(*treeItem)
-		if bytes.Compare(target.key, end) < 0 {
+		if bytes.Compare(target.key, end) <= 0 {
 			items = append(items, i)
 			return true
 		}

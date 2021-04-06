@@ -109,9 +109,10 @@ func Chr(ascii int) string {
 body :要分割的字符
 chunklen :分割的尺寸
 end :行尾序列符号
-例子：Chunk_Split("1234", 1, "")，"1\r\n2\r\n3\r\n4\r\n"
+例子：ChunkSplit("1234", 1, "")，"1\r\n2\r\n3\r\n4\r\n"
+对标PHP：chunk_split
 */
-func Chunk_Split(body string, chunklen uint, end string) string {
+func ChunkSplit(body string, chunklen uint, end string) string {
 	if end == "" {
 		end = "\r\n"
 	}
@@ -137,10 +138,11 @@ func Chunk_Split(body string, chunklen uint, end string) string {
  返回字符串所用字符的信息，统计 string 中每个字节值（0..255）出现的次数，使用多种模式返回结果
 str :要分割的字符
 noSpace :分割的尺寸
-例子：Count_Chars(我爱 Go Go Go, true)
+例子：CountChars(我爱 Go Go Go, true)
 返回：map[string]int{"G": 3, "o": 3, "我": 1, "爱": 1, }
+对标PHP：count_chars
 */
-func Count_Chars(str string, noSpace ...bool) map[string]int {
+func CountChars(str string, noSpace ...bool) map[string]int {
 	m := make(map[string]int)
 	countSpace := true
 	if len(noSpace) > 0 && noSpace[0] {
@@ -240,10 +242,11 @@ search   :查找的目标值，也就是 needle。一个数组可以指定多个
 replace  :search 的替换值。一个数组可以被用来指定多重替换
 subject  :执行替换的数组或者字符串。也就是 haystack
 count   :如果被指定，它的值将被设置为替换发生的次数
-例子：Str_Replace("%body%", "black", "<body text='%body%'>")
+例子：StrReplace("%body%", "black", "<body text='%body%'>")
 返回："THIS"
+对标PHP:str_replace
 */
-func Str_Replace(search, replace, subject string, count ...int) string {
+func StrReplace(search, replace, subject string, count ...int) string {
     n := -1
 	if len(count) > 0 {
 		n = count[0]
@@ -258,10 +261,11 @@ search   :查找的目标值，也就是 needle。一个数组可以指定多个
 replace  :search 的替换值。一个数组可以被用来指定多重替换
 subject  :执行替换的数组或者字符串。也就是 haystack
 count   :如果被指定，它的值将被设置为替换发生的次数
-例子：Str_Replace("%body%", "black", "<body text='%body%'>")
+例子：StrIreplace("%body%", "black", "<body text='%body%'>")
 返回："THIS"
+对标PHP:Str_Replace
 */
-func Str_Ireplace(search, replace, subject string, count ...int) string {
+func StrIreplace(search, replace, subject string, count ...int) string {
     n := -1
 	if len(count) > 0 {
 		n = count[0]

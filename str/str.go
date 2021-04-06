@@ -7,6 +7,7 @@ import (
     "unicode"
     "strconv"
     "strings"
+    "fmt"
 )
 
 
@@ -261,26 +262,26 @@ search   :查找的目标值，也就是 needle。一个数组可以指定多个
 replace  :search 的替换值。一个数组可以被用来指定多重替换
 subject  :执行替换的数组或者字符串。也就是 haystack
 count   :如果被指定，它的值将被设置为替换发生的次数
-例子：StrIreplace("%body%", "black", "<body text='%body%'>")
+例子：StrIreplace("%body%", "black", "<body text='%Body%'>")
 返回："THIS"
 对标PHP:Str_Replace
-*/
+*/             
 func StrIreplace(search, replace, subject string, count ...int) string {
-    n := -1
+	n := -1
 	if len(count) > 0 {
 		n = count[0]
 	}
 	if n == 0 {
-		return origin
+		return subject
 	}
 	var (
 		length      = len(search)
 		searchLower = strings.ToLower(search)
 	)
 	for {
-		originLower := strings.ToLower(origin)
+		originLower := strings.ToLower(subject)
 		if pos := strings.Index(originLower, searchLower); pos != -1 {
-			origin = origin[:pos] + replace + origin[pos+length:]
+			subject = subject[:pos] + replace + subject[pos+length:]
 			if n--; n == 0 {
 				break
 			}
@@ -288,5 +289,213 @@ func StrIreplace(search, replace, subject string, count ...int) string {
 			break
 		}
 	}
-	return origin
+	return subject
+}
+
+
+/*
+去除字符串首尾处的空白字符（或者其他字符）,
+str   :待处理的字符串
+characterMask  :可选参数，过滤字符也可由 character_mask 参数指定。一般要列出所有希望过滤的字符，也可以使用 “..” 列出一个字符范围。
+例子：Trim("Hello World")
+返回："HelloWorld"
+此函数返回字符串 str 去除首尾空白字符后的结果。如果不指定第二个参数，trim() 将去除这些字符：
+*/
+func Trim(str string, characterMask ...string) string {
+	if len(characterMask) == 0 {
+		return strings.TrimSpace(str)
+	}
+	return strings.Trim(str, characterMask[0])
+}
+
+/*
+删除字符串开头的空白字符（或其他字符）
+str   :待处理的字符串
+characterMask  :可选参数，过滤字符也可由 character_mask 参数指定。一般要列出所有希望过滤的字符，也可以使用 “..” 列出一个字符范围。
+例子：Ltrim(" Hello World")
+返回："HelloWorld"
+该函数返回一个删除了 str 最左边的空白字符的字符串。 如果不使用第二个参数， ltrim() 仅删除以下字符
+*/
+func Ltrim(str string, characterMask ...string) string {
+	if len(characterMask) == 0 {
+		return strings.TrimLeftFunc(str, unicode.IsSpace)
+	}
+	return strings.TrimLeft(str, characterMask[0])
+}
+
+/*
+删除字符串末端的空白字符（或者其他字符）
+str   :输入字符串
+characterMask  :通过指定 character_mask，可以指定想要删除的字符列表。简单地列出你想要删除的全部字符。使用 .. 格式，可以指定一个范围
+例子：Rtrim("Hello World ")
+返回："HelloWorld"
+该函数删除 str 末端的空白字符（或者其他字符）并返回。
+*/
+func Rtrim(str string, characterMask ...string) string {
+	if len(characterMask) == 0 {
+		return strings.TrimRightFunc(str, unicode.IsSpace)
+	}
+	return strings.TrimRight(str, characterMask[0])
+}
+
+/*
+以千位分隔符方式格式化一个数字
+number   :你要格式化的数字
+decimals  :要保留的小数位数
+decPoint  :指定小数点显示的字符
+thousandsSep :指定千位分隔符显示的字符
+例子：NumberFormat(1234.56, 2, ',', ' ')返回1 234,56
+例子：NumberFormat(1234.56, 2, '.', '')返回1234.57
+格式化以后的 number
+*/
+func NumberFormat(number float64, decimals int, decPoint, thousandsSep string) string {
+	neg := false
+	if number < 0 {
+		number = -number
+		neg = true
+	}
+	// Will round off
+	str := fmt.Sprintf("%."+strconv.Itoa(decimals)+"F", number)
+	prefix, suffix := "", ""
+	if decimals > 0 {
+		prefix = str[:len(str)-(decimals+1)]
+		suffix = str[len(str)-decimals:]
+	} else {
+		prefix = str
+	}
+	sep := []byte(thousandsSep)
+	n, l1, l2 := 0, len(prefix), len(sep)
+	// thousands sep num
+	c := (l1 - 1) / 3
+	tmp := make([]byte, l2*c+l1)
+	pos := len(tmp) - 1
+	for i := l1 - 1; i >= 0; i, n, pos = i-1, n+1, pos-1 {
+		if l2 > 0 && n > 0 && n%3 == 0 {
+			for j := range sep {
+				tmp[pos] = sep[l2-j-1]
+				pos--
+			}
+		}
+		tmp[pos] = prefix[i]
+	}
+	s := string(tmp)
+	if decimals > 0 {
+		s += decPoint + suffix
+	}
+	if neg {
+		s = "-" + s
+	}
+
+	return s
+}
+
+/*
+func StripTags(html string) string {
+	var b bytes.Buffer
+	s, c, i, allText := []byte(html), context{}, 0, true
+	// Using the transition funcs helps us avoid mangling
+	// `<div title="1>2">` or `I <3 Ponies!`.
+	for i != len(s) {
+		if c.delim == delimNone {
+			st := c.state
+			// Use RCDATA instead of parsing into JS or CSS styles.
+			if c.element != elementNone && !isInTag(st) {
+				st = stateRCDATA
+			}
+			d, nread := transitionFunc[st](c, s[i:])
+			i1 := i + nread
+			if c.state == stateText || c.state == stateRCDATA {
+				// Emit text up to the start of the tag or comment.
+				j := i1
+				if d.state != c.state {
+					for j1 := j - 1; j1 >= i; j1-- {
+						if s[j1] == '<' {
+							j = j1
+							break
+						}
+					}
+				}
+				b.Write(s[i:j])
+			} else {
+				allText = false
+			}
+			c, i = d, i1
+			continue
+		}
+		i1 := i + bytes.IndexAny(s[i:], delimEnds[c.delim])
+		if i1 < i {
+			break
+		}
+		if c.delim != delimSpaceOrTagEnd {
+			// Consume any quote.
+			i1++
+		}
+		c, i = context{state: stateTag, element: c.element}, i1
+	}
+	if allText {
+		return html
+	} else if c.state == stateText || c.state == stateRCDATA {
+		b.Write(s[i:])
+	}
+	return b.String()
+}
+*/
+
+/*
+查找字符串首次出现的位置
+haystack   :输入字符串
+needle  :查找的字符串
+offset  :如果提供了此参数，搜索会从字符串该字符数的起始位置开始统计。 如果是负数，搜索会从字符串结尾指定字符数开始。
+例子：StrPos("aabc", "a")
+返回：0
+该函数删除 str 末端的空白字符（或者其他字符）并返回。
+*/
+func StrPos(haystack, needle string, offsets ...int) int {
+	length := len(haystack)
+    offset := 0
+	if len(offsets) > 0 {
+		offset = offsets[0]
+	}
+	if length == 0 || offset > length || -offset > length {
+		return -1
+	}
+
+	if offset < 0 {
+		offset += length
+	}
+	pos := strings.Index(haystack[offset:], needle)
+	if pos == -1 {
+		return -1
+	}
+	return pos + offset
+}
+
+/*
+查找字符串首次出现的位置（不区分大小写）
+haystack   :输入字符串
+needle  :查找的字符串
+offset  :如果提供了此参数，搜索会从字符串该字符数的起始位置开始统计。 如果是负数，搜索会从字符串结尾指定字符数开始。
+例子：StrPos("Aabc", "a")
+返回：0
+该函数删除 str 末端的空白字符（或者其他字符）并返回。
+*/
+func StrIpos(haystack, needle string, offsets ...int) int {
+	length := len(haystack)
+    offset := 0
+	if len(offsets) > 0 {
+		offset = offsets[0]
+	}
+	if length == 0 || offset > length || -offset > length {
+		return -1
+	}
+
+	haystack = haystack[offset:]
+	if offset < 0 {
+		offset += length
+	}
+	pos := strings.Index(strings.ToLower(haystack), strings.ToLower(needle))
+	if pos == -1 {
+		return -1
+	}
+	return pos + offset
 }

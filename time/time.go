@@ -60,3 +60,19 @@ func DateZeroTime(date string) int64 {
     }
     return 0
 }
+
+/*
+获取指定日期是本年度第几周
+date：时间日期
+例子：GetWeek("2020-12-09")或者GetWeek("2020-12-09 15:04:05")
+返回：year年度，week星期
+*/
+func GetWeek(date string) (year, week int) {
+    timeLayout := "2006-01-02 15:04:05"
+    if len(date) == 10 {
+        timeLayout = "2006-01-02"
+    }
+    loc, _ := time.LoadLocation("Local")
+    tmp, _ := time.ParseInLocation(timeLayout, date, loc)
+    return tmp.ISOWeek()
+}

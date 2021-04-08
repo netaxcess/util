@@ -1,0 +1,1 @@
+golang处理slice或者map的公共函数

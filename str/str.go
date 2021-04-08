@@ -477,7 +477,7 @@ func StrPos(haystack, needle string, offsets ...int) int {
 haystack   :输入字符串
 needle  :查找的字符串
 offset  :如果提供了此参数，搜索会从字符串该字符数的起始位置开始统计。 如果是负数，搜索会从字符串结尾指定字符数开始。
-例子：StrPos("Aabc", "a")
+例子：StrIpos("Aabc", "a")
 返回：0
 该函数删除 str 末端的空白字符（或者其他字符）并返回。
 */

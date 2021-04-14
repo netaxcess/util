@@ -2,7 +2,6 @@ package array
 
 import (
 	"encoding/base64"
-    "net/url"
 )
 
 /*

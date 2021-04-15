@@ -41,3 +41,35 @@ func DirNames(bas_dir string,file_name string) string {
     }
     return dir
 }
+
+
+/*
+递归返回子目录下面所有文件
+pathname :要读取的目录地址
+vals :接受返回文件目录结果的数组
+返回整个目录在slice
+var vals []string
+GetAllFile("./github.com/netaxcess/util", vals)，读取/github.com/netaxcess/util目录下面所以的文件
+*/
+func GetAllFile(pathname string, vals []string) ([]string, error) {
+	rd, err := ioutil.ReadDir(pathname)
+	if err != nil {
+		fmt.Println("read dir fail:", err)
+		return vals, err
+	}
+	for _, fi := range rd {
+		if fi.IsDir() {
+			fullDir := pathname + "/" + fi.Name()
+			vals, err = GetAllFile(fullDir, vals)
+			if err != nil {
+				fmt.Println("read dir fail:", err)
+				return vals, err
+			}
+		} else {
+			fullName := pathname + "/" + fi.Name()
+			vals = append(vals, fullName)
+		}
+	}
+	return vals, nil
+}
+ 

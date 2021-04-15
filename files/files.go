@@ -47,7 +47,7 @@ func DirNames(bas_dir string,file_name string) string {
 递归返回子目录下面所有文件
 pathname :要读取的目录地址
 vals :接受返回文件目录结果的数组
-返回整个目录
+返回整个目录在slice
 var vals []string
 GetAllFile("./github.com/netaxcess/util", vals)，读取/github.com/netaxcess/util目录下面所以的文件
 */

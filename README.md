@@ -24,7 +24,7 @@ func ArrayValues(elements map[interface
 
 /*
 合并几个slice
-ss   :要合并的集合
+ss  :要合并的集合
 例子：ArrayMerge([]string{1,2}, []string{3,4})
 返回：[]string{"1", "2", "3", "4"}
 */

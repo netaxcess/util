@@ -3,6 +3,7 @@ package files
 import (
 	"os"
     "strings"
+	"io/ioutil"
 )
 
 /*
@@ -54,7 +55,6 @@ GetAllFile("./github.com/netaxcess/util", vals)，读取/github.com/netaxcess/ut
 func GetAllFile(pathname string, vals []string) ([]string, error) {
 	rd, err := ioutil.ReadDir(pathname)
 	if err != nil {
-		fmt.Println("read dir fail:", err)
 		return vals, err
 	}
 	for _, fi := range rd {
@@ -62,7 +62,6 @@ func GetAllFile(pathname string, vals []string) ([]string, error) {
 			fullDir := pathname + "/" + fi.Name()
 			vals, err = GetAllFile(fullDir, vals)
 			if err != nil {
-				fmt.Println("read dir fail:", err)
 				return vals, err
 			}
 		} else {

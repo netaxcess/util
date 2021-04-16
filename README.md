@@ -5,7 +5,7 @@ elements   :要处理的map集合
 返回：[]string{"1", "2"}
 */
 
-func ArrayKeys(elements map[interface
+func ArrayKeys(elements map[interface}]interface}) []interface} 
 
 
 
@@ -17,19 +17,19 @@ elements   :要处理的map集合
 返回：[]string{"a", "b"}
 */
 
-func ArrayValues(elements map[interface
+func ArrayValues(elements map[interface}]interface}) []interface} 
 
 
 
 
 /*
 合并几个slice
-ss  :要合并的集合
+ss   :要合并的集合
 例子：ArrayMerge([]string{1,2}, []string{3,4})
 返回：[]string{"1", "2", "3", "4"}
 */
 
-func ArrayMerge(ss ...[]interface
+func ArrayMerge(ss ...[]interface}) []interface} 
 
 
 
@@ -41,7 +41,7 @@ ss   :要合并的集合
 返回：[]string{2, 3}
 */
 
-func ArraySlice(s []interface
+func ArraySlice(s []interface}, offset, length uint) []interface} 
 
 
 
@@ -54,7 +54,7 @@ m        :要判断的map集合
 返回：true
 */
 
-func ArrayKeyExists(key interface
+func ArrayKeyExists(key interface}, m map[interface}]interface}) bool 
 
 
 
@@ -67,7 +67,7 @@ haystack :slice集合
 返回：true
 */
 
-func InArray(needle interface
+func InArray(needle interface}, haystack interface}) bool 
 
 
 
@@ -141,7 +141,7 @@ data:interface{}数据类型
 例子:String(1234)
 */
 
-func String(data interface
+func String(data interface}) string 
 
 
 
@@ -152,7 +152,7 @@ data:interface{}数据类型
 例子:Int("1234")
 */
 
-func Int(data interface
+func Int(data interface}) int 
 
 
 
@@ -163,7 +163,7 @@ data:interface{}数据类型
 例子:Int32("1234")
 */
 
-func Int32(data interface
+func Int32(data interface}) int32 
 
 
 
@@ -174,7 +174,7 @@ data:interface{}数据类型
 例子:Int64("1234")
 */
 
-func Int64(data interface
+func Int64(data interface}) int64 
 
 
 
@@ -185,7 +185,7 @@ data:interface{}数据类型
 例子:float32("1234")
 */
 
-func Float32(data interface
+func Float32(data interface}) float32 
 
 
 
@@ -196,7 +196,7 @@ data:interface{}数据类型
 例子:Float64("1234")
 */
 
-func Float64(data interface
+func Float64(data interface}) float64 
 
 
 

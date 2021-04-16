@@ -4,6 +4,7 @@ elements   :要处理的map集合
 例子：ArrayKeys(map[string]string{"1":"a", "2":"b"})
 返回：[]string{"1", "2"}
 */
+
 func ArrayKeys(elements map[interface
 
 
@@ -15,6 +16,7 @@ elements   :要处理的map集合
 例子：ArrayValues(map[string]string{"1":"a", "2":"b"})
 返回：[]string{"a", "b"}
 */
+
 func ArrayValues(elements map[interface
 
 
@@ -22,10 +24,11 @@ func ArrayValues(elements map[interface
 
 /*
 合并几个slice
-ss   :要合并的集合
+ss  :要合并的集合
 例子：ArrayMerge([]string{1,2}, []string{3,4})
 返回：[]string{"1", "2", "3", "4"}
 */
+
 func ArrayMerge(ss ...[]interface
 
 
@@ -37,6 +40,7 @@ ss   :要合并的集合
 例子：ArraySlice([]string{1, 2, 3, 4, 5}, 1, 2)
 返回：[]string{2, 3}
 */
+
 func ArraySlice(s []interface
 
 
@@ -49,6 +53,7 @@ m        :要判断的map集合
 例子：ArrayKeyExists("a", map[string]string{"a":"1", "b":"2"})
 返回：true
 */
+
 func ArrayKeyExists(key interface
 
 
@@ -61,6 +66,7 @@ haystack :slice集合
 例子：InArray(1, [2]interface{}{"a", 1})
 返回：true
 */
+
 func InArray(needle interface
 
 
@@ -72,6 +78,7 @@ dirs：需要建立的目录文件
 返回创建目录是否成功
 例子：MakeDir("/data/test",0777)
 */
+
 func MakeDir(dirs string, mode os.FileMode) bool 
 
 
@@ -84,6 +91,7 @@ file_name :文件路基
 返回整个目录
 DirNames("/home/wwwroot","2020/12")，创建/home/wwwroot/2020/12的目录
 */
+
 func DirNames(bas_dir string,file_name string) string 
 
 
@@ -97,6 +105,7 @@ vals :接受返回文件目录结果的数组
 var vals []string
 例子：GetAllFile("./github.com/netaxcess/util", vals)，读取/github.com/netaxcess/util目录下面所以的文件
 */
+
 func GetAllFile(pathname string, vals []string) ([]string, error) 
 
 
@@ -109,6 +118,7 @@ data :要写入的文件内容，字符串
 mode :文件权限
 例子：FilePutContents("./github.com/netaxcess/util/a.txt", "内容", 0666)，读取/github.com/netaxcess/util目录下面所以的文件
 */
+
 func FilePutContents(filename string, data string, mode os.FileMode) error 
 
 
@@ -119,6 +129,7 @@ func FilePutContents(filename string, data string, mode os.FileMode) error
 filename :要读取的文件
 例子：FileGetContents("./github.com/netaxcess/util/a.txt")，读取/github.com/netaxcess/util目录下面所以的文件
 */
+
 func FileGetContents(filename string) (string, error) 
 
 
@@ -129,6 +140,7 @@ func FileGetContents(filename string) (string, error)
 data:interface{}数据类型
 例子:String(1234)
 */
+
 func String(data interface
 
 
@@ -139,6 +151,7 @@ func String(data interface
 data:interface{}数据类型
 例子:Int("1234")
 */
+
 func Int(data interface
 
 
@@ -149,6 +162,7 @@ func Int(data interface
 data:interface{}数据类型
 例子:Int32("1234")
 */
+
 func Int32(data interface
 
 
@@ -159,6 +173,7 @@ func Int32(data interface
 data:interface{}数据类型
 例子:Int64("1234")
 */
+
 func Int64(data interface
 
 
@@ -169,6 +184,7 @@ func Int64(data interface
 data:interface{}数据类型
 例子:float32("1234")
 */
+
 func Float32(data interface
 
 
@@ -179,6 +195,7 @@ func Float32(data interface
 data:interface{}数据类型
 例子:Float64("1234")
 */
+
 func Float64(data interface
 
 
@@ -187,6 +204,7 @@ func Float64(data interface
 /*
 产生随机数播下随机种子
 */
+
 func init() 
 
 
@@ -198,6 +216,7 @@ max最大值
 返回随机数int类型
 例子:Rands(100,200)
 */
+
 func Rands(min, max int) int 
 
 
@@ -209,6 +228,7 @@ new_charset:要转的新编码
 str        :要处理的字符
 返回处理后的新编码。比如Iconv("GBK","中国人")
 */
+
 func Iconv(new_charset,str string) string 
 
 
@@ -219,6 +239,7 @@ func Iconv(new_charset,str string) string
 str:要截取的字符串
 例子:MatchCn("测试的代码2345")
 */
+
 func MatchCn(str string) []string 
 
 
@@ -230,6 +251,7 @@ str:要截取的字符串
 例子:MatchCn("测试的代码2345 334")
 返回：[]string{"2345","334"}
 */
+
 func MatchNumber(str string) []string 
 
 
@@ -243,6 +265,7 @@ length:截取的长度
 返回截取后的字符串
 例子:Substr("测试的代码","1","2")
 */
+
 func Substr(s string, start, length int) string 
 
 
@@ -254,6 +277,7 @@ str: 要加密的字符串
 返回MD5后的字符串
 例子:Md5("123456")
 */
+
 func Md5(str string) string 
 
 
@@ -265,6 +289,7 @@ strings :多个要拼接的字符串
 返回字符串拼接内容
 例子：Concat("abc","def","cfg")
 */
+
 func Concat(strings ...string) string 
 
 
@@ -276,6 +301,7 @@ str :需要被转义的字符串
 返回被转义后的内容
 例子：Addslashes("Is your name O'reilly?")
 */
+
 func Addslashes(str string) string 
 
 
@@ -287,6 +313,7 @@ str :需要转换的字符串
 返回十六进制内容
 例子：Bin2hex("11111001")
 */
+
 func Bin2hex(str string) (string, error) 
 
 
@@ -298,6 +325,7 @@ str :需要转换的ascii码
 返回ascii转换后的字符串
 例子：Chr(27)，返回换行符
 */
+
 func Chr(ascii int) string 
 
 
@@ -311,6 +339,7 @@ end :行尾序列符号
 例子：ChunkSplit("1234", 1, "")，"1\r\n2\r\n3\r\n4\r\n"
 对标PHP：chunk_split
 */
+
 func ChunkSplit(body string, chunklen uint, end string) string 
 
 
@@ -324,6 +353,7 @@ noSpace :分割的尺寸
 返回：map[string]int{"G": 3, "o": 3, "我": 1, "爱": 1, }
 对标PHP：count_chars
 */
+
 func CountChars(str string, noSpace ...bool) map[string]int 
 
 
@@ -336,6 +366,7 @@ str :要切分的的字符串
 例子：Explode(" ", piece1 piece2 piece3)
 返回：[]string{"piece1", "piece2", "piece3"}
 */
+
 func Explode(delimiter, str string) []string 
 
 
@@ -348,6 +379,7 @@ pieces :你想要转换的数组
 例子：Implode(" - ", []string{"我爱", "GoFrame"})
 返回："我爱 - GoFrame"
 */
+
 func Implode(glue string, pieces []string) string 
 
 
@@ -359,6 +391,7 @@ str   :要转换的字符串
 例子：Lcfirst("This Is")
 返回："this is"
 */
+
 func Lcfirst(str string) string 
 
 
@@ -370,6 +403,7 @@ str   :要转换的字符串
 例子：Ucfirst("this")
 返回："This"
 */
+
 func Ucfirst(str string) string 
 
 
@@ -381,6 +415,7 @@ str   :要转换的字符串
 例子：Strtolower("This")
 返回："this"
 */
+
 func Strtolower(str string) string 
 
 
@@ -392,6 +427,7 @@ str   :要转换的字符串
 例子：Strtoupper("This")
 返回："THIS"
 */
+
 func Strtoupper(str string) string 
 
 
@@ -407,6 +443,7 @@ count   :如果被指定，它的值将被设置为替换发生的次数
 返回："THIS"
 对标PHP:str_replace
 */
+
 func StrReplace(search, replace, subject string, count ...int) string 
 
 
@@ -422,6 +459,7 @@ count   :如果被指定，它的值将被设置为替换发生的次数
 返回："THIS"
 对标PHP:Str_Replace
 */
+
 func StrIreplace(search, replace, subject string, count ...int) string 
 
 
@@ -435,6 +473,7 @@ characterMask  :可选参数，过滤字符也可由 character_mask 参数指定
 返回："HelloWorld"
 此函数返回字符串 str 去除首尾空白字符后的结果。如果不指定第二个参数，trim() 将去除这些字符：
 */
+
 func Trim(str string, characterMask ...string) string 
 
 
@@ -448,6 +487,7 @@ characterMask  :可选参数，过滤字符也可由 character_mask 参数指定
 返回："HelloWorld"
 该函数返回一个删除了 str 最左边的空白字符的字符串。 如果不使用第二个参数， ltrim() 仅删除以下字符
 */
+
 func Ltrim(str string, characterMask ...string) string 
 
 
@@ -461,6 +501,7 @@ characterMask  :通过指定 character_mask，可以指定想要删除的字符�
 返回："HelloWorld"
 该函数删除 str 末端的空白字符（或者其他字符）并返回。
 */
+
 func Rtrim(str string, characterMask ...string) string 
 
 
@@ -476,6 +517,7 @@ thousandsSep :指定千位分隔符显示的字符
 例子：NumberFormat(1234.56, 2, '.', '')返回1234.57
 格式化以后的 number
 */
+
 func NumberFormat(number float64, decimals int, decPoint, thousandsSep string) string 
 
 
@@ -490,6 +532,7 @@ offset  :如果提供了此参数，搜索会从字符串该字符数的起始�
 返回：0
 该函数删除 str 末端的空白字符（或者其他字符）并返回。
 */
+
 func StrPos(haystack, needle string, offsets ...int) int 
 
 
@@ -504,6 +547,7 @@ offset  :如果提供了此参数，搜索会从字符串该字符数的起始�
 返回：0
 该函数删除 str 末端的空白字符（或者其他字符）并返回。
 */
+
 func StrIpos(haystack, needle string, offsets ...int) int 
 
 
@@ -515,6 +559,7 @@ str   :要反转的字符串
 例子：Strrev("1234")
 返回：4321
 */
+
 func Strrev(str string) string  
 
 
@@ -527,6 +572,7 @@ needle   :处理的分隔符
 例子：Strstr("xb@ichunt.com", "@")
 返回：@ichunt.com
 */
+
 func Strstr(haystack string, needle string) string 
 
 
@@ -538,6 +584,7 @@ char   :要转的字符
 例子：Ord("\n")
 返回：10
 */
+
 func Ord(char string) int 
 
 
@@ -548,6 +595,7 @@ date日期字符串，默认是年月日2020-02-03
 返回时间戳int64
 例子:StrtoTime("2020-02-02")
 */
+
 func StrtoTime(date string) int64 
 
 
@@ -556,6 +604,7 @@ func StrtoTime(date string) int64
 /*
 获取当前系统时间戳
 */
+
 func CurrentTime() int64 
 
 
@@ -568,6 +617,7 @@ date_formate:要转换的格式
 例子：Date(1605582958,"2006/01/02 15:04:05")
 例子：Date(1605582958,"2006年01月02日 15:04:05")
 */
+
 func Date(time_unix int64, date_format string) string 
 
 
@@ -578,6 +628,7 @@ func Date(time_unix int64, date_format string) string
 date：时间日期
 例子：DateZeroTime("2020-12-09")
 */
+
 func DateZeroTime(date string) int64 
 
 
@@ -589,6 +640,7 @@ date：时间日期
 例子：GetWeek("2020-12-09")或者GetWeek("2020-12-09 15:04:05")
 返回：year年度，week星期
 */
+
 func GetWeek(date string) (year, week int) 
 
 
@@ -600,6 +652,7 @@ str   :要执行base64_encode的字符串
 例子：Base64Decode("This is an encoded string")
 返回："VGhpcyBpcyBhbiBlbmNvZGVkIHN0cmluZw=="
 */
+
 func Base64Encode(str string) string 
 
 
@@ -611,6 +664,7 @@ str   :要执行base64_decode的字符串
 例子：Base64Decode("VGhpcyBpcyBhbiBlbmNvZGVkIHN0cmluZw==")
 返回："This is an encoded string"
 */
+
 func Base64Decode(str string) (string, error) 
 
 
@@ -622,6 +676,7 @@ str   :要执行url_encode的字符串
 例子：URLEncode("LM358D-T%DTD")
 返回："LM358D-T%25DTD"
 */
+
 func URLEncode(str string) string 
 
 
@@ -633,6 +688,7 @@ str   :要执行url_decode的字符串
 例子：URLDecode("LM358D-T%25DTD")
 返回："LM358D-T%25DTD"
 */
+
 func URLDecode(str string) (string, error) 
 
 

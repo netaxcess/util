@@ -202,6 +202,43 @@ func Float64(data interface}) float64
 
 
 /*
+将内容转化成json字符串
+val   :需要转换的字符串
+例子：JsonEncode(map[string]string{"1":"a", "2":"b"})
+返回：{"1":"a","2":"b"}
+*/
+
+func JsonEncode(val interface}) (string) 
+
+
+
+
+/*
+将内容转化成json字符串
+val   :需要转换的字符串
+v     : 回调结果map[string]interface{}
+例子：JsonDecode(`{"1":"a","2":"b"}`, v)
+返回：{"1":"a","2":"b"}
+*/
+
+func JsonDecode(val string) interface} 
+
+
+
+
+/*
+验证是否正常的JSON数据
+val   :需要转换的字符串
+例子：ValidJson({"1":"a","2":"b"})
+返回：true
+*/
+
+func ValidJson(val string) bool 
+
+
+
+
+/*
 产生随机数播下随机种子
 */
 

@@ -18,6 +18,6 @@ mail.To = []string{"abc@gmail.com"}
 mail.From = "testx@gmail.com"
 mail.Subject = "hi, just from beego!"
 mail.Text = "Text Body is, of course, supported!"
-mail.HTML = "<h1>Fancy Html is supported, too!</h1>"
+mail.HTML = "Fancy Html is supported, too!"
 mail.AttachFile("/Users/testx/github/beego/beego.go")
 mail.Send()

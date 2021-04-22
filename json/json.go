@@ -26,8 +26,7 @@ v     : 回调结果map[string]interface{}
 例子：JsonDecode(`{"1":"a","2":"b"}`, v)
 返回：{"1":"a","2":"b"}
 */
-func JsonDecode(val string) interface{} {
-	var v interface{}
+func JsonDecode(val string, v interface{}) interface{} {
 	json.Unmarshal([]byte(val), &v)
 	return v
 }

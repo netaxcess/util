@@ -221,7 +221,7 @@ v     : 回调结果map[string]interface{}
 返回：{"1":"a","2":"b"}
 */
 
-func JsonDecode(val string) interface} 
+func JsonDecode(val string, v interface}) interface} 
 
 
 
@@ -234,6 +234,40 @@ val   :需要转换的字符串
 */
 
 func ValidJson(val string) bool 
+
+
+
+
+/*
+对浮点数进行四舍五入
+例子:Round(1.99)
+返回：2
+*/
+
+func Round(val float64) float64 
+
+
+
+
+/*
+舍去法取整，返回不大于 value 的最接近的整数，将 value 的小数部分舍去取整。floor() 返回的类型仍然是 float，因为 float 值的范围通常比 integer 要大。
+例子:Floor(9.999)返回9， Floor(-3.14)返回-4
+*/
+
+func Floor(val float64) float64 
+
+
+
+
+/*
+进一法取整，返回不小于 value 的下一个整数，value 如果有小数部分则进一位。
+例子:Ceil(4.3)返回5
+例子:Ceil(9.9)返回10
+例子:Ceil(-3.14)返回-3
+
+*/
+
+func Ceil(val float64) float64 
 
 
 
@@ -727,6 +761,30 @@ str   :要执行url_decode的字符串
 */
 
 func URLDecode(str string) (string, error) 
+
+
+
+
+/*
+检查一个变量是否为空,判断一个变量是否被认为是空的。当一个变量并不存在，或者它的值等同于false，那么它会被认为不存在
+val   :判断是否为空的内容
+例子：Empty(0)
+返回：true
+*/
+
+func Empty(val interface}) bool 
+
+
+
+
+/*
+检测变量是否为数字或数字字符串,如果 val 是数字和数字字符串则返回 true，否则返回 false
+val   :要检测是否是字符串或者数字的内容
+例子：IsNumeric("1234")
+返回：true
+*/
+
+func IsNumeric(val interface}) bool 
 
 
 

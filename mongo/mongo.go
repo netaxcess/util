@@ -55,6 +55,9 @@ func (self *Mongodb) Insert(collection string, data ...interface{}) error {
 		moq  : 1,
 	}
 	Update("sku", bson.M{"sku_name": "lm358", "supplier_id": 2}, latestLog)
+
+	goods := new(Mgoods)
+	 mongodb.Update("chip1stop", bson.M{"goods_id": 12000148992}, goods)
 */
 func (self *Mongodb) Update(collection string, selector interface{}, change interface{}) error {
 	return self.WithFunc(collection, func(c *mgo.Collection) error {
